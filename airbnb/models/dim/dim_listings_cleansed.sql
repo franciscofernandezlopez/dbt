@@ -7,7 +7,7 @@ SELECT
     case
         when minimum_nights = 0 then 1
         else minimum_nights
-    end as minimim_nights,
+    end as minimum_nights,
     host_id,
     replace(price_str,'$')::number(10,2) as price,
     created_at,
