@@ -5,4 +5,4 @@ SELECT
     created_at,
     updated_at
 FROM 
-    AIRBNB.RAW.RAW_HOSTS
+    {{source('airbnb', 'hosts')}}

@@ -5,4 +5,4 @@ SELECT
     listing_id,
     reviewer_name
 FROM 
-    AIRBNB.RAW.RAW_REVIEWS
+    {{source('airbnb', 'reviews')}}
