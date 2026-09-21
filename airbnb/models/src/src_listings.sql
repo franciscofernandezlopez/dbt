@@ -9,4 +9,4 @@ SELECT
     created_at,
     updated_at
 FROM 
-    AIRBNB.RAW.RAW_LISTINGS
+    {{source('airbnb', 'listings')}}
