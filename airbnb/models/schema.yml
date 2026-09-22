@@ -5,37 +5,35 @@ models:
     config: 
       contract:
         enforced: true
-    constraints: 
-      - type: primary_key
-        columns: [host_id]
 
     columns:
     - name: host_id
       data_type: integer
       data_tests:
         - unique
-        - not null 
-      constraints: 
+        - not_null
+      constraints:
         - type: primary_key
         - type: not_null
 
     - name: host_name
       data_type: string
       data_tests:
-        - not null 
-      constraints: 
+        - not_null
+      constraints:
         - type: not_null
 
     - name: is_superhost
       data_type: string
       data_tests:
         - accepted_values:
-            values: ['t', 'f']
+            arguments:
+              values: ['t', 'f']
     
-    - name: updated_at
+    - name: created_at
       data_type: timestamp
 
-    - name: created_at
+    - name: updated_at
       data_type: timestamp
 
   - name: dim_listings_cleansed
@@ -43,7 +41,6 @@ models:
       - minimum_row_count:
           arguments: 
             min_row_count: 1000
-          severity: warn
 
     columns: 
       - name: listing_id
@@ -69,23 +66,6 @@ models:
         data_tests:
           - positive_values
 
-  - name: dim_hosts_cleansed
-    columns: 
-      - name: host_id
-        data_tests:
-          - unique 
-          - not_null
-
-      - name: host_name
-        data_tests:
-          - not_null
-
-      - name: is_superhost
-        data_tests: 
-          - accepted_values: 
-              arguments:
-                values: ['t', 'f']
-
   - name: fct_reviews
     columns: 
       - name: listing_id
@@ -104,19 +84,3 @@ models:
       - name: reviewer_name
         data_tests:
           - not_null
-
-  - name: dim_hosts_cleansed
-    config:
-      contract: 
-        enforced: true
-    columns:
-      - name: host_id
-        data_type: integer
-      - name: host_name
-        data_type: string
-      - name: is_superhost
-        data_type: string
-      - name: updated_at
-        data_type: timestamp
-      - name: created_at
-        data_type: timestamp
