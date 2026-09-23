@@ -2,12 +2,14 @@ version: 2
 
 models:
   - name: dim_hosts_cleansed
+    description: Cleansed tables containing Airbnb hosts.
     config: 
       contract:
         enforced: true
 
     columns:
     - name: host_id
+      description: Primary key for the host
       data_type: integer
       data_tests:
         - unique
@@ -17,6 +19,7 @@ models:
         - type: not_null
 
     - name: host_name
+      description: Host name
       data_type: string
       data_tests:
         - not_null
@@ -24,6 +27,7 @@ models:
         - type: not_null
 
     - name: is_superhost
+      description: Is superhost (t = true, f = false)
       data_type: string
       data_tests:
         - accepted_values:
@@ -37,6 +41,7 @@ models:
       data_type: timestamp
 
   - name: dim_listings_cleansed
+    description: Cleansed tables which contains Airbnb listings.
     data_tests:
       - minimum_row_count:
           arguments: 
@@ -44,11 +49,13 @@ models:
 
     columns: 
       - name: listing_id
+        description: PK for the listing
         data_tests:
           - unique 
           - not_null
 
       - name: host_id
+        description: Host ID
         data_tests:
           - not_null
           - relationships:
@@ -57,6 +64,7 @@ models:
                 field: host_id
 
       - name: room_type
+        description: Type of the apartment / room
         data_tests: 
           - accepted_values: 
               arguments:
